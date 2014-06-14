@@ -3,36 +3,67 @@ homebrew-ethereum
 
 Homebrew Tap for Ethereum
 
-##Installation
+## Installation
 
 ```
 brew tap caktux/ethereum
+```
+
+### C++ client
+```
 brew install ethereum
 brew linkapps
 ```
 
-Then `open /Applications/AlethZero.app` or run `eth -i` (interactive mode)
-
-Get the latest with:
+### Go client
 ```
-brew install ethereum --HEAD
+brew install go-ethereum
 ```
 
-Current branches:
-* `--HEAD` is on [call](https://github.com/ethereum/cpp-ethereum/commits/call)
+## Running
+
+### C++ client
+`open /Applications/AlethZero.app`, `eth` (CLI), or `neth` (ncurses interface)
+
+### Go client
+`ethereal` (GUI) or `ethereum` (CLI)
+
+
+## Development
+Get the latest version with:
+```
+brew install ethereum --devel
+```
+
+Current branches (C++):
+* `--HEAD` is on latest release branch
 * `--devel` is on [develop](https://github.com/ethereum/cpp-ethereum/commits/develop)
-* normal install uses a fixed commit
+* normal install uses a fixed commit on latest release branch
 
-Update and upgrade:
+Go:
+* `--HEAD` is on develop branch
+* normal install is on master branch
+
+
+## Upgrading
+
 ```
 brew update && brew upgrade
 ```
 
-After minor updates, reinstall with:
+## Minor updates
+
+### C++ client
 ```
 brew update && brew reinstall ethereum
 ```
 
+### Go client
+```
+brew update && brew reinstall eth-go go-ethereum
+```
+
+## Versions
 List available versions with:
 ```
 brew versions ethereum
@@ -49,20 +80,18 @@ repository locally with `brew tap caktux/ethereum`.
 
 ##Options
 
-See `brew info ethereum` for all options.
+See `brew info ethereum` or `brew info go-ethereum` for all options. `--with-...` features are experimental patches.
 
 Option           | desc.
 -----------------|---------
-`--headless`     | Headless, install command line interface only, no GUI app
-`--without-gui`  | synonym for headless
-`--with-ncurses` | ncurses patch (merged in HEAD)
+`--headless`     | Headless
 `--with-export`  | Dump to CSV, applies ncurses before
 `--with-faucet`  | Faucet patch
 
 ##Troubleshooting
 
 * Use `--verbose` to get more info while installing.
-* Make sure to update XCode (latest is 5.1) and the command line tools.
+* Make sure to update XCode and the command line tools.
 * Run `brew update` and `brew upgrade`
 * Fix what the `brew doctor` says.
 * Reinstall dependencies: `brew reinstall boost --c++11`
